@@ -14,6 +14,223 @@
         <link rel="stylesheet" href="main.css" />
     </head>
     <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 border-right border-secondary">
+                    <nav class="sticky-top" id="navbar">
+                        <header class="display-4">Topics</header>
+
+                        <a href="#sass" class="nav-link">Sass</a>
+
+                        <a href="#sass_features" class="nav-link"
+                            >Sass Features</a
+                        >
+
+                        <a href="#sass_syntax" class="nav-link">Sass Syntax</a>
+
+                        <a href="#sass_variables" class="nav-link"
+                            >Sass Variables</a
+                        >
+
+                        <a href="#sass_mixins" class="nav-link">Sass Mixins</a>
+
+                        <a href="#sass_functions" class="nav-link"
+                            >Sass Functions</a
+                        >
+                    </nav>
+                </div>
+                <main id="main-doc" class="col-md-8">
+                    <section id="sass" class="main-section">
+                        <header class="display-3">
+                            Sass
+                        </header>
+                        <hr />
+
+                        <p>
+                            Sass is an extension of CSS that adds power and
+                            elegance to the basic language. It allows you to use
+                            variables, nested rules, mixins, inline imports, and
+                            more, all with a fully CSS-compatible syntax. Sass
+                            helps keep large stylesheets well-organized, and get
+                            small stylesheets up and running quickly,
+                            particularly with the help of the Compass style
+                            library.
+                        </p>
+                    </section>
+                    <section id="sass_features" class="main-section">
+                        <header class="display-4">
+                            Sass Features
+                        </header>
+                        <hr />
+
+                        <ul>
+                            <li>Fully CSS-compatible</li>
+                            <li>
+                                Language extensions such as variables, nesting,
+                                and mixins
+                            </li>
+                            <li>
+                                Many useful functions for manipulating colors
+                                and other values
+                            </li>
+                            <li>
+                                Advanced features like control directives for
+                                libraries
+                            </li>
+                            <li>well-formatted, customizable output</li>
+                        </ul>
+                    </section>
+                    <section id="sass_syntax" class="main-section">
+                        <header class="display-4">
+                            Sass Syntax
+                        </header>
+                        <hr />
+
+                        <p>
+                            There are two syntaxes available for Sass. The
+                            first, known as SCSS (Sassy CSS) and used throughout
+                            this reference, is an extension of the syntax of
+                            CSS. This means that every valid CSS stylesheet is a
+                            valid SCSS file with the same meaning. In addition,
+                            SCSS understands most CSS hacks and vendor-specific
+                            syntax, such as IE's old filter syntax. This syntax
+                            is enhanced with the Sass features described below.
+                            Files using this syntax have the .scss extension.
+                        </p>
+                        <br />
+                        <p>
+                            The second and older syntax, known as the indented
+                            syntax (or sometimes just "Sass"), provides a more
+                            concise way of writing CSS. It uses indentation
+                            rather than brackets to indicate nesting of
+                            selectors, and newlines rather than semicolons to
+                            separate properties. Some people find this to be
+                            easier to read and quicker to write than SCSS. The
+                            indented syntax has all the same features, although
+                            some of them have slightly different syntax; this is
+                            described in the indented syntax reference. Files
+                            using this syntax have the .sass extension.
+                        </p>
+                        <br />
+                        <p>
+                            Either syntax can import files written in the other.
+                            Files can be automatically converted from one syntax
+                            to the other using the sass-convert command line
+                            tool:
+                        </p>
+                        <br />
+                        <code>
+                            # Convert Sass to SCSS $ sass-convert style.sass
+                            style.scss
+                            <br />
+                            # Convert SCSS to Sass $ sass-convert style.scss
+                            style.sass
+                        </code>
+                        <br /><br />
+                        <p>
+                            Note that this command does not generate CSS files.
+                            For that, use the sass command described elsewhere.
+                        </p>
+                    </section>
+
+                    <section id="sass_variables" class="main-section">
+                        <header class="display-4">
+                            Sass Variables
+                        </header>
+                        <hr />
+                        <p>
+                            The most straightforward way to use SassScript is to
+                            use variables. Variables begin with dollar signs,
+                            and are set like CSS properties:
+                        </p>
+                        <pre><code>$width: 5em;</code></pre>
+                        <p>You can then refer to them in properties:</p>
+                        <pre><code>#main {
+                                    width: $width;
+                                  }</code></pre>
+                    </section>
+
+                    <section id="sass_mixins" class="main-section">
+                        <header class="display-4">
+                            Sass Mixins
+                        </header>
+                        <hr />
+                        <p>
+                            Mixins allow you to define styles that can be
+                            re-used throughout the stylesheet without needing to
+                            resort to non-semantic classes like .float-left.
+                            Mixins can also contain full CSS rules, and anything
+                            else allowed elsewhere in a Sass document. They can
+                            even take arguments which allows you to produce a
+                            wide variety of styles with very few mixins.
+                        </p>
+                        <br />
+                        <p>Defining a Mixin: @mixin</p>
+                        <br />
+                        <p>
+                            Mixins are defined with the @mixin directive. It's
+                            followed by the name of the mixin and optionally the
+                            arguments, and a block containing the contents of
+                            the mixin. For example, the large-text mixin is
+                            defined as follows:
+                        </p>
+                        <br />
+                        <pre>
+                                    <code>
+                                        @mixin large-text {
+                                            font: {
+                                              family: Arial;
+                                              size: 20px;
+                                              weight: bold;
+                                            }
+                                            color: #ff0000;
+                                          }
+                                    </code>
+                            </pre>
+                        <h3>Including a Mixin: @include</h3>
+                        <p>
+                            Mixins are included in the document with the
+                            @include directive. This takes the name of a mixin
+                            and optionally arguments to pass to it, and includes
+                            the styles defined by that mixin into the current
+                            rule. For example:
+                        </p>
+                        <pre><code>
+                                    .page-title {
+                                        @include large-text;
+                                        padding: 4px;
+                                        margin-top: 10px;
+                                      }
+                            </code></pre>
+                    </section>
+                    <section id="sass_functions" class="main-section">
+                        <header class="display-4">
+                            Sass Functions
+                        </header>
+                        <hr />
+                        <p>
+                            It is possible to define your own functions in sass
+                            and use them in any value or script context. For
+                            example:
+                        </p>
+                        <pre><code>
+                                    $grid-width: 40px;
+                                    $gutter-width: 10px;
+                                    
+                                    @function grid-width($n) {
+                                      @return $n * $grid-width + ($n - 1) * $gutter-width;
+                                    }
+                                    
+                                    #sidebar { width: grid-width(5); }
+                            </code></pre>
+                        <p>Becomes:</p>
+                        <pre><code>#sidebar {
+                                    width: 240px; }</code></pre>
+                    </section>
+                </main>
+            </div>
+        </div>
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
     </body>
 </html>

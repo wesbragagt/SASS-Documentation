@@ -1,2 +1,2 @@
 # SASS-Documentation
-Built a landing page for SASS documentation.
+Techinical documentation page for the css preprocessor library SASS.
